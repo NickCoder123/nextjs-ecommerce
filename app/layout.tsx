@@ -4,6 +4,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 
 import "./globals.css";
 import { ModalProvider } from "~/components/providers/modal-provider";
+import { ToastProvider } from "~/components/providers/toast-provider";
 
 const figtree = Figtree({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={figtree.className}>
+          <ToastProvider />
           <ModalProvider />
           {children}
         </body>
