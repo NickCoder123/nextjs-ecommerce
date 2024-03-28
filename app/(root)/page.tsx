@@ -1,10 +1,18 @@
-import { UserButton } from "@clerk/nextjs";
+"use client";
+
+import { useEffect } from "react";
+
+import { useStoreModal } from "~/hooks/use-store-modal";
 
 export default function Home() {
-  return (
-    <div className="p-4">
-      This is a protected route.
-      <UserButton afterSignOutUrl="/" />
-    </div>
-  );
+  const onOpen = useStoreModal((state) => state.onOpen);
+  const isOpen = useStoreModal((state) => state.isOpen);
+
+  useEffect(() => {
+    if (!isOpen) {
+      onOpen();
+    }
+  }, [isOpen, onOpen]);
+
+  return <div className="p-4">Root Page</div>;
 }
